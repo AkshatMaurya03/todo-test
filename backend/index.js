@@ -1,6 +1,6 @@
 const express = require (' express');
 const { Todo } = require('./db');
-const { todoSchema } = require('./zod/schema');
+const { todoSchema, updatetodoSchema } = require('./zod/schema');
 const app=express();
 app.use(express.json());
 
@@ -22,7 +22,19 @@ app.get('/showtodos', async function (req, res) {
     res.json(todos);
 });
 
-
+app.put("updateTodo", async function (req, res) {
+    const { id } = req.body;    
+    const isvalid= updatetodoSchema.safeParse(req.body);
+    if (!isvalid.success) {
+        res.status(400).json({ error: isvalid.error.errors });
+        return;
+    }
+    await Todo.updateOne(
+        { _id: id },
+        { $set: { completed: req.body.completed } }
+    );
+    res.json({ message: 'Todo updated successfully' });     
+});
 
 
 app.listen(3000);
