@@ -4,4 +4,7 @@ const todoSchema = zod.object({
     description: zod.string().optional(),
     completed: zod.boolean().default(false)
 });
-module.exports = { todoSchema };
+const updatetodoSchema= zod.object({
+    id: zod.string().min(1, "ID is required")
+});
+module.exports = { todoSchema, updatetodoSchema };
