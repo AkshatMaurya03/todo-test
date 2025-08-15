@@ -1,10 +1,11 @@
-const express = require (' express');
+const express = require('express');
 const { Todo } = require('./db');
 const { todoSchema, updatetodoSchema } = require('./zod/schema');
 const app=express();
 app.use(express.json());
 
 app.post('/enterTodos', async function (req,res){
+    try{
     const todo = req.body;
     const isvalid = todoSchema.safeParse(todo);
     if (!isvalid.success) {
@@ -16,13 +17,16 @@ app.post('/enterTodos', async function (req,res){
         completed:todo.completed
     })
     res.json({ message: 'Todo created successfully' });
+} catch (error) {
+    console.error('Error creating todo:', error);
+}
 })
 app.get('/showtodos', async function (req, res) {
     const todos = await Todo.find();
     res.json(todos);
 });
 
-app.put("updateTodo", async function (req, res) {
+app.put("/updateTodo", async function (req, res) {
     const { id } = req.body;    
     const isvalid= updatetodoSchema.safeParse(req.body);
     if (!isvalid.success) {
