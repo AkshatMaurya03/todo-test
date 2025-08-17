@@ -89,13 +89,9 @@ npm run dev
   </tr>
   <tr>
     <td>PUT</td>
-    <td><code>/todo/:id</code></td>
-    <td>Update a todo by ID</td>
+    <td><code>/todo/</code></td>
+    <td>Update a todo by ID from body</td>
   </tr>
-  <tr>
-    <td>DELETE</td>
-    <td><code>/todo/:id</code></td>
-    <td>Delete a todo by ID</td>
-  </tr>
+  
 </table>
 <h2>THANKYOU </h2>
