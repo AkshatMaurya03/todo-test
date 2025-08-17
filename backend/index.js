@@ -4,7 +4,7 @@ const { todoSchema, updatetodoSchema } = require('./zod/schema');
 const app=express();
 app.use(express.json());
 
-app.post('/enterTodos', async function (req,res){
+app.post('/todo', async function (req,res){
     try{
     const todo = req.body;
     const isvalid = todoSchema.safeParse(todo);
@@ -21,12 +21,12 @@ app.post('/enterTodos', async function (req,res){
     console.error('Error creating todo:', error);
 }
 })
-app.get('/showtodos', async function (req, res) {
+app.get('/todos', async function (req, res) {
     const todos = await Todo.find();
     res.json(todos);
 });
 
-app.put("/updateTodo", async function (req, res) {
+app.put("/todo", async function (req, res) {
     const { id } = req.body;    
     const isvalid= updatetodoSchema.safeParse(req.body);
     if (!isvalid.success) {
