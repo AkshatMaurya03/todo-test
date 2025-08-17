@@ -98,14 +98,4 @@ npm run dev
     <td>Delete a todo by ID</td>
   </tr>
 </table>
-
-<h2>🤝 Contributing</h2>
-<p>
-Pull requests are welcome! If you’d like to improve the project,
-please fork the repo and submit a PR.
-</p>
-
-<h2>📜 License</h2>
-<p>
-This project is licensed under the <b>MIT License</b>.
-</p>
+<h2>THANKYOU </h2>
