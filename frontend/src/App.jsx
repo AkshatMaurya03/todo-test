@@ -1,16 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { use, useEffect, useState } from 'react'
 import './App.css'
-
+import { CreateTodo} from './Components/Createtodo'
+import { Showtodo } from './Components/Showtodo'
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/todos')
+      .then(async (response) => {
+        const data = await response.json()
+        setTodos(data)
+      })
+  }, [])
 
   return (
     <>
-      <input type="text" name="" id="" placeholder='title'/>
-      <input type="text" placeholder='description for todo' />
-      <button>add todo</button>
+    <CardWrapper>
+      <CreateTodo />
+      <Showtodo todos={todos}/>
+    </CardWrapper>
+      
     </>
   )
 }
